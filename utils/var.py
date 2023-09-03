@@ -1,6 +1,11 @@
 config_file_path = "./config.json"
 #badWord_file_path = "bad_words.json"
 
+
+# Casino var
+slot_emoji = ["🍒", "🍊", "🍋", "🍇", "🔔", "💎", "🍀", "🍎"]
+cooldown_time = 60 * 60 * 2
+
 # Data
 data_folder = "./data/"
 user_data_file_path = f"{data_folder}users.json"
