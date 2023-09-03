@@ -120,5 +120,10 @@ class RankCommands(commands.Cog):
         with open(self.data_path, 'w') as data_file:
             json.dump(self.data, data_file, indent=4)
 
+    def load_data(self):
+        if os.path.exists(self.data_path):
+            with open(self.data_path, 'r') as data_file:
+                self.data = json.load(data_file)
+
 def setup(bot):
     bot.add_cog(RankCommands(bot, base_level=1, level_factor=0.1))
