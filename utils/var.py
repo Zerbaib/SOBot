@@ -1,4 +1,4 @@
-config_file_path = "config.json"
+config_file_path = "./config.json"
 #badWord_file_path = "bad_words.json"
 
 # Data
@@ -11,7 +11,7 @@ casino_cooldown_data_file_path = f"{data_folder}cooldown.json"
 # Repos Github and version link
 online_version = "https://raw.githubusercontent.com/Zerbaib/SOBot/main/version"
 issues_link = "https://github.com/Zerbaib/SOBot/issues/new?assignees=Zerbaib&labels=bug"
-local_version = "version"
+local_version = "./version"
 
 # List and dict
 data_file = [
