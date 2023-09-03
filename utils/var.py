@@ -2,10 +2,11 @@ config_file_path = "config.json"
 #badWord_file_path = "bad_words.json"
 
 # Data
-user_data_file_path = "data/users.json"
-casino_data_file_path = "data/economy.json"
-rank_data_file_path = "data/ranks.json"
-casino_cooldown_data_file_path = "data/cooldown.json"
+data_folder = "./data/"
+user_data_file_path = f"{data_folder}users.json"
+casino_data_file_path = f"{data_folder}economy.json"
+rank_data_file_path = f"{data_folder}ranks.json"
+casino_cooldown_data_file_path = f"{data_folder}cooldown.json"
 
 # Repos Github and version link
 online_version = "https://raw.githubusercontent.com/Zerbaib/SOBot/main/version"

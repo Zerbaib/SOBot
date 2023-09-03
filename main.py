@@ -6,10 +6,16 @@ import disnake
 from disnake.ext import commands
 from utils import var
 
+if not os.path.exists(var.data_folder):
+    os.makedirs(var.data_folder)
 for file in var.data_file:
     if not os.path.exists(file):
         with open(file, 'w') as data_file:
             json.dump({}, data_file)
+for filename in os.listdir(var.data_folder):
+    if filename not in var.data_file:
+        file_path = os.path.join(var.data_folder, filename)
+        os.remove(file_path)
 
 #if not os.path.exists(badWord_file_path):
 #    badword_data = {
