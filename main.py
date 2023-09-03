@@ -26,18 +26,6 @@ if not os.path.exists(var.config_file_path):
     with open(var.config_file_path, 'w') as config_file:
         token = input("Enter the bot's token:\n")
         prefix = input("Enter the bot's prefix:\n")
-        log_id = int(input("Enter the log's channel ID:\n"))
-        poll_id = int(input("Enter the poll's channel ID:\n"))
-        join_id = int(input("Enter the join's channel ID:\n"))
-        leave_id = int(input("Enter the leave's channel ID:\n"))
-        voice_id = int(input("Enter the voice's channel ID\nUsed for create salon on join:\n"))
-        id_client = int(input("Enter your Discord ID:\n"))
-        mute_id = int(input("Enter role id of muted role:\n"))
-        rank1 = int(input("Enter role id of level 10 role:\n"))
-        rank2 = int(input("Enter role id of level 25 role:\n"))
-        rank3 = int(input("Enter role id of level 50 role:\n"))
-        api_spo_id = input("Enter Client Id of your Spotify app:\n")
-        api_spo = input("Enter Client secret of your Spotify app:\n")
         config_data = {
             "TOKEN": token,
             "PREFIX": prefix
