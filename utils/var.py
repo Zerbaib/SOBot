@@ -1,6 +1,11 @@
-config_file_path = "./config.json"
+# Description: All var of the bot
+
 #badWord_file_path = "bad_words.json"
 
+# Config var
+config_file_path = "./config.json"
+config_folder = "./config/"
+default_config = {}
 
 # Casino var
 slot_emoji = ["🍒", "🍊", "🍋", "🍇", "🔔", "💎", "🍀", "🍎"]
