@@ -6,7 +6,12 @@
 config_file_path = "./config.json"
 config_folder = "./config/"
 default_config = {
-    "MUTE_ROLE_ID": 123456789
+    "MUTE_ROLE_ID": 123456789,
+    "level_roles": {
+        "10": 123456789,
+        "25": 123456789,
+        "50": 123456789
+    }
 }
 
 # Casino var
