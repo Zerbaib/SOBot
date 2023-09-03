@@ -4,7 +4,7 @@ config_file_path = "./config.json"
 # Data
 data_folder = "./data/"
 user_data_file_path = f"{data_folder}users.json"
-casino_data_file_path = f"{data_folder}economy.json"
+economy_data_file_path = f"{data_folder}economy.json"
 rank_data_file_path = f"{data_folder}ranks.json"
 casino_cooldown_data_file_path = f"{data_folder}cooldown.json"
 
@@ -16,7 +16,7 @@ local_version = "./version"
 # List and dict
 data_file = [
     user_data_file_path, 
-    casino_data_file_path, 
+    economy_data_file_path, 
     rank_data_file_path, 
     casino_cooldown_data_file_path
 ]
