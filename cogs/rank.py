@@ -1,9 +1,12 @@
-import disnake
-from disnake.ext import commands
 import json
 import os
 import random
+
+import disnake
+from disnake.ext import commands
+
 from utils import error, var
+
 
 class RankCommands(commands.Cog):
     def __init__(self, bot, base_level, level_factor):
