@@ -3,14 +3,14 @@ from disnake.ext import commands
 import json
 import os
 import random
-from utils import error
+from utils import error, var
 
 class RankCommands(commands.Cog):
     def __init__(self, bot, base_level, level_factor):
         self.bot = bot
         self.base_level = base_level
         self.level_factor = level_factor
-        self.data_path = 'data/ranks.json'
+        self.data_path = var.rank_data_file_path
         self.data = {}
         self.load_data()
 
