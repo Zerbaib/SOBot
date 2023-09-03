@@ -36,6 +36,22 @@ class CasinoCommands(commands.Cog):
         with open(self.data_file, 'w') as file:
             json.dump(all_data, file, indent=4)
 
+    def load_cooldown(self, server_id):
+        try:
+            with open(self.cooldown_file, 'r') as file:
+                cooldown_data = json.load(file)
+                return cooldown_data.get(server_id, {})
+        except FileNotFoundError:
+            return {}
+
+    def save_cooldown(self, server_id, cooldown_data):
+        with open(self.cooldown_file, 'r') as file:
+            all_cooldown_data = json.load(file)
+            all_cooldown_data[server_id] = cooldown_data
+
+        with open(self.cooldown_file, 'w') as file:
+            json.dump(all_cooldown_data, file, indent=4)
+
     @commands.Cog.listener()
     async def on_ready(self):
         print('========== ⚙️ Casino ⚙️ ==========')
@@ -53,39 +69,36 @@ class CasinoCommands(commands.Cog):
             user_id = str(ctx.author.id)
             current_time = int(datetime.datetime.now().timestamp())
             data = self.load_data(server_id)
+            data_c = self.load_cooldown(server_id)
 
-            with open(self.cooldown_file, 'r') as cooldown_file:
-                cooldown_data = json.load(cooldown_file)
-                if not cooldown_data:
-                    cooldown_data = {}
+            last_earn_time = data_c.get(user_id, 0)
 
-                last_earn_time = cooldown_data.get(user_id, 0)
+            if current_time - last_earn_time >= 7200:
+                data.setdefault(user_id, 0)
+                earnings = data[user_id] + 100
+                data[user_id] = earnings
+                data_c[user_id] = current_time
+                self.save_data(server_id, data)
+                self.save_cooldown(server_id, data_c)
 
-                if current_time - last_earn_time >= 7200:
-                    data.setdefault(user_id, 0)
-                    earnings = data[user_id] + 100
-                    data[user_id] = earnings
-                    cooldown_data[user_id] = current_time
-                    self.save_data(server_id, data)
+                embed = disnake.Embed(
+                    title="💸 Earn Coins 💸",
+                    description=f"You earned 100 coins 🪙!\nYour total balance: ``{earnings}`` coins.",
+                    color=disnake.Color.green()
+                )
+                await ctx.response.defer()
+                await ctx.send(embed=embed)
+            else:
+                remaining_time = 7200 - (current_time - last_earn_time)
+                remaining_time_str = str(datetime.timedelta(seconds=remaining_time))
 
-                    embed = disnake.Embed(
-                        title="💸 Earn Coins 💸",
-                        description=f"You earned 100 coins 🪙!\nYour total balance: ``{earnings}`` coins.",
-                        color=disnake.Color.green()
-                    )
-                    await ctx.response.defer()
-                    await ctx.send(embed=embed)
-                else:
-                    remaining_time = 7200 - (current_time - last_earn_time)
-                    remaining_time_str = str(datetime.timedelta(seconds=remaining_time))
-
-                    embed = disnake.Embed(
-                        title="🕰 Earn Coins 🕰",
-                        description=f"You are on cooldown.\nTry again in ``{remaining_time_str}`` ⏳.",
-                        color=disnake.Color.red()
-                    )
-                    await ctx.response.defer()
-                    await ctx.send(embed=embed)
+                embed = disnake.Embed(
+                    title="🕰 Earn Coins 🕰",
+                    description=f"You are on cooldown.\nTry again in ``{remaining_time_str}`` ⏳.",
+                    color=disnake.Color.red()
+                )
+                await ctx.response.defer()
+                await ctx.send(embed=embed)
         except Exception as e:
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
