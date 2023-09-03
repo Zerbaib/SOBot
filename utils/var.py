@@ -5,7 +5,9 @@
 # Config var
 config_file_path = "./config.json"
 config_folder = "./config/"
-default_config = {}
+default_config = {
+    "MUTE_ROLE_ID": 123456789
+}
 
 # Casino var
 slot_emoji = ["🍒", "🍊", "🍋", "🍇", "🔔", "💎", "🍀", "🍎"]

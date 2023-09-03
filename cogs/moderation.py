@@ -2,11 +2,13 @@ import disnake
 from disnake.ext import commands
 import json
 import aiohttp
-from utils import error
+from utils import error, var
 
 class ModsCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.config_file = var.config_file_path
+        self.config_folder = var.config_folder
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -40,9 +42,10 @@ class ModsCommands(commands.Cog):
 
     @commands.slash_command(name="mute", description="Mute a member")
     @commands.has_permissions(manage_messages=True)
-    async def mute(self, ctx, member: disnake.Member, reason: str = "No reason provided"):
+    async def mute(self, ctx, guild, member: disnake.Member, reason: str = "No reason provided"):
         try:
-            with open("config.json", 'r') as config_file:
+            config_file = f"{self.config_folder}{guild.id}.json"
+            with open(config_file, 'r') as config_file:
                 config = json.load(config_file)
             role_id = config.get("MUTE_ROLE_ID")
 
@@ -63,9 +66,10 @@ class ModsCommands(commands.Cog):
 
     @commands.slash_command(name="unmute", description="Unmute a member")
     @commands.has_permissions(manage_messages=True)
-    async def unmute(self, ctx, member: disnake.Member, reason: str = "No reason provided"):
+    async def unmute(self, ctx, guild, member: disnake.Member, reason: str = "No reason provided"):
         try:
-            with open("config.json", 'r') as config_file:
+            config_file = f"{self.config_folder}{guild.id}.json"
+            with open(config_file, 'r') as config_file:
                 config = json.load(config_file)
             role_id = config.get("MUTE_ROLE_ID")
             
