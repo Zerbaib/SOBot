@@ -14,4 +14,9 @@ issues_link = "https://github.com/Zerbaib/SOBot/issues/new?assignees=Zerbaib&lab
 local_version = "version"
 
 # List and dict
-data_file = [user_data_file_path, casino_data_file_path, rank_data_file_path, casino_cooldown_data_file_path]
+data_file = [
+    user_data_file_path, 
+    casino_data_file_path, 
+    rank_data_file_path, 
+    casino_cooldown_data_file_path
+]
