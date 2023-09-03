@@ -40,22 +40,7 @@ if not os.path.exists(var.config_file_path):
         api_spo = input("Enter Client secret of your Spotify app:\n")
         config_data = {
             "TOKEN": token,
-            "PREFIX": prefix,
-            "LOG_ID": log_id,
-            "POLL_ID": poll_id,
-            "JOIN_ID": join_id,
-            "LEAVE_ID": leave_id,
-            "AUTO_VOICE_ID": voice_id,
-            "YOUR_ID": id_client,
-            "MUTE_ROLE_ID": mute_id,
-            "SPOTIFY_API_ID": api_spo_id,
-            "SPOTIFY_API_SECRET": api_spo,
-            "del_time": 3,
-            "level_roles": {
-                "10": rank1,
-                "25": rank2,
-                "50": rank3
-            }
+            "PREFIX": prefix
         }
         json.dump(config_data, config_file, indent=4)
     with open(var.config_file_path, 'r') as config_file:
