@@ -15,6 +15,11 @@ class ConfigCog(commands.Cog):
     
     @commands.Cog.listener()
     async def on_ready(self):
+        for guild in self.bot.guilds:
+            config_path = f"{self.config_folder}{guild.id}.json"
+            if not os.path.exists(config_path):
+                with open(config_path, "w") as config_file:
+                    json.dump(self.default_config, config_file, indent=4)
         print('========== ⚙️ Config ⚙️ ==========')
         print('🧰 config has been loaded')
         print()
