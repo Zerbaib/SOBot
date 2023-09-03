@@ -9,6 +9,7 @@ casino_cooldown_data_file_path = "data/cooldown.json"
 
 # Repos Github and version link
 online_version = "https://raw.githubusercontent.com/Zerbaib/SOBot/main/version"
+issues_link = "https://github.com/Zerbaib/SOBot/issues/new?assignees=Zerbaib&labels=bug"
 local_version = "version"
 
 # List and dict
