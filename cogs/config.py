@@ -23,7 +23,7 @@ class ConfigCog(commands.Cog):
         print('========== ⚙️ Config ⚙️ ==========')
         print('🧰 config has been loaded')
         print()
-    
+
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
         default_config = self.default_config
